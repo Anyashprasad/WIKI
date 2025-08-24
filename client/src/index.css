@@ -97,6 +97,7 @@
 @layer components {
   .glow-effect {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
   }
 
   .glow-effect:hover {
@@ -111,6 +112,84 @@
 
   .pulse-green {
     animation: pulse-green 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .custom-cursor {
+    cursor: none;
+  }
+
+  .custom-cursor::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: var(--hacker-green);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+    mix-blend-mode: difference;
+  }
+
+  .cursor-pointer-custom {
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .cursor-pointer-custom:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+  }
+
+  .cursor-text-custom {
+    cursor: text;
+  }
+
+  .cursor-text-custom:focus {
+    box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.3);
+  }
+
+  .interactive-element {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+  }
+
+  .interactive-element:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+  }
+
+  .mega-text {
+    font-size: clamp(8rem, 20vw, 24rem);
+    font-weight: 900;
+    line-height: 0.8;
+    background: linear-gradient(45deg, var(--hacker-green), transparent, var(--hacker-green));
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 3s ease-in-out infinite;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .mega-footer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mega-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(0, 255, 136, 0.1) 0%, transparent 70%);
+    pointer-events: none;
   }
 }
 
@@ -165,4 +244,14 @@
 @keyframes glow {
   from { box-shadow: 0 0 5px var(--hacker-green); }
   to { box-shadow: 0 0 20px var(--hacker-green), 0 0 30px var(--hacker-green); }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes float-subtle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }

@@ -148,7 +148,7 @@ export default function ScanResults() {
                 variant="ghost" 
                 size="sm" 
                 onClick={() => setLocation("/")}
-                className="w-8 h-8 bg-border-dark hover:bg-hacker-green hover:text-dark-bg transition-all duration-200 p-0"
+                className="w-8 h-8 bg-border-dark hover:bg-hacker-green hover:text-dark-bg transition-all duration-200 p-0 cursor-pointer-custom"
                 data-testid="button-back"
               >
                 <ArrowLeft size={16} />
@@ -166,7 +166,7 @@ export default function ScanResults() {
                 size="sm"
                 onClick={() => exportMutation.mutate("json")}
                 disabled={exportMutation.isPending}
-                className="bg-card-bg border-border-dark hover:border-hacker-green"
+                className="bg-card-bg border-border-dark hover:border-hacker-green cursor-pointer-custom"
                 data-testid="button-export-json"
               >
                 <Download className="mr-2" size={16} />
@@ -174,7 +174,7 @@ export default function ScanResults() {
               </Button>
               <Button 
                 size="sm"
-                className="bg-hacker-green text-dark-bg hover:bg-hacker-green/80"
+                className="bg-hacker-green text-dark-bg hover:bg-hacker-green/80 cursor-pointer-custom"
                 data-testid="button-export-pdf"
               >
                 <FileText className="mr-2" size={16} />
@@ -189,7 +189,7 @@ export default function ScanResults() {
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Scan Summary */}
         <div className="mb-8">
-          <Card className="bg-card-bg border-border-dark">
+          <Card className="bg-card-bg border-border-dark interactive-element">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle className="text-2xl font-bold">Scan Results</CardTitle>
@@ -222,7 +222,7 @@ export default function ScanResults() {
         {/* Charts */}
         {vulnerabilities.length > 0 && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-            <Card className="bg-card-bg border-border-dark">
+            <Card className="bg-card-bg border-border-dark interactive-element">
               <CardHeader>
                 <CardTitle>Vulnerability Distribution</CardTitle>
               </CardHeader>
@@ -231,7 +231,7 @@ export default function ScanResults() {
               </CardContent>
             </Card>
             
-            <Card className="bg-card-bg border-border-dark">
+            <Card className="bg-card-bg border-border-dark interactive-element">
               <CardHeader>
                 <CardTitle>Severity Breakdown</CardTitle>
               </CardHeader>
@@ -295,7 +295,7 @@ export default function ScanResults() {
                     <Button
                       onClick={() => generateFixMutation.mutate(vulnerability)}
                       disabled={generateFixMutation.isPending}
-                      className="bg-hacker-green text-dark-bg hover:bg-hacker-green/80 hover:scale-105 transition-all duration-200"
+                      className="bg-hacker-green text-dark-bg hover:bg-hacker-green/80 hover:scale-105 transition-all duration-200 cursor-pointer-custom"
                       data-testid={`button-generate-fix-${vulnerability.id}`}
                     >
                       <Wrench className="mr-2" size={16} />

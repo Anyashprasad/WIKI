@@ -94,13 +94,13 @@ export default function Home() {
               </h1>
             </div>
             <nav className="hidden md:flex space-x-6">
-              <a href="#" className="text-gray-300 hover-text-hacker-green transition-colors duration-200" data-testid="nav-scanner">
+              <a href="#" className="text-gray-300 hover-text-hacker-green transition-colors duration-200 cursor-pointer-custom" data-testid="nav-scanner">
                 Scanner
               </a>
-              <a href="#" className="text-gray-300 hover-text-hacker-green transition-colors duration-200" data-testid="nav-chat">
+              <a href="#" className="text-gray-300 hover-text-hacker-green transition-colors duration-200 cursor-pointer-custom" data-testid="nav-chat">
                 Chat
               </a>
-              <a href="#" className="text-gray-300 hover-text-hacker-green transition-colors duration-200" data-testid="nav-docs">
+              <a href="#" className="text-gray-300 hover-text-hacker-green transition-colors duration-200 cursor-pointer-custom" data-testid="nav-docs">
                 Docs
               </a>
             </nav>
@@ -130,13 +130,13 @@ export default function Home() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={handleKeyPress}
-                className="w-full px-6 py-4 bg-card-bg border border-border-dark text-white placeholder-gray-400 text-lg glow-effect focus:ring-2 focus:ring-hacker-green focus:border-hacker-green transition-all duration-200"
+                className="w-full px-6 py-4 bg-card-bg border border-border-dark text-white placeholder-gray-400 text-lg glow-effect focus:ring-2 focus:ring-hacker-green focus:border-hacker-green transition-all duration-200 cursor-text-custom"
                 data-testid="input-main"
               />
               <Button
                 onClick={handleSubmit}
                 disabled={scanMutation.isPending || chatMutation.isPending}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-hacker-green hover-bg-hacker-green-80 text-dark-bg rounded-lg transition-all duration-200 hover:scale-110 p-0"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-hacker-green hover-bg-hacker-green-80 text-dark-bg rounded-lg transition-all duration-200 hover:scale-110 p-0 cursor-pointer-custom"
                 data-testid="button-submit"
               >
                 →
@@ -148,7 +148,7 @@ export default function Home() {
               <Button 
                 variant="outline" 
                 size="sm" 
-                className="bg-card-bg border-border-dark text-gray-300 hover-text-hacker-green hover-border-hacker-green hover:scale-105 transition-all duration-200"
+                className="bg-card-bg border-border-dark text-gray-300 hover-text-hacker-green hover-border-hacker-green hover:scale-105 transition-all duration-200 cursor-pointer-custom"
                 data-testid="button-scan-website"
               >
                 <Globe className="mr-2" size={16} />
@@ -157,7 +157,7 @@ export default function Home() {
               <Button 
                 variant="outline" 
                 size="sm" 
-                className="bg-card-bg border-border-dark text-gray-300 hover-text-hacker-green hover-border-hacker-green hover:scale-105 transition-all duration-200"
+                className="bg-card-bg border-border-dark text-gray-300 hover-text-hacker-green hover-border-hacker-green hover:scale-105 transition-all duration-200 cursor-pointer-custom"
                 data-testid="button-security-chat"
               >
                 <MessageCircle className="mr-2" size={16} />
@@ -166,7 +166,7 @@ export default function Home() {
               <Button 
                 variant="outline" 
                 size="sm" 
-                className="bg-card-bg border-border-dark text-gray-300 hover-text-hacker-green hover-border-hacker-green hover:scale-105 transition-all duration-200"
+                className="bg-card-bg border-border-dark text-gray-300 hover-text-hacker-green hover-border-hacker-green hover:scale-105 transition-all duration-200 cursor-pointer-custom"
                 data-testid="button-view-report"
               >
                 <FileText className="mr-2" size={16} />
@@ -177,7 +177,7 @@ export default function Home() {
 
           {/* Features Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-            <Card className="bg-card-bg border-border-dark hover:border-hacker-green transition-all duration-300 hover:scale-105 glow-effect">
+            <Card className="bg-card-bg border-border-dark hover:border-hacker-green transition-all duration-300 hover:scale-105 glow-effect interactive-element">
               <CardContent className="p-6">
                 <div className="w-12 h-12 bg-hacker-green/20 rounded-lg flex items-center justify-center mb-4">
                   <Bug className="text-hacker-green text-xl" />
@@ -189,7 +189,7 @@ export default function Home() {
               </CardContent>
             </Card>
             
-            <Card className="bg-card-bg border-border-dark hover:border-hacker-green transition-all duration-300 hover:scale-105 glow-effect">
+            <Card className="bg-card-bg border-border-dark hover:border-hacker-green transition-all duration-300 hover:scale-105 glow-effect interactive-element">
               <CardContent className="p-6">
                 <div className="w-12 h-12 bg-hacker-green/20 rounded-lg flex items-center justify-center mb-4">
                   <Bot className="text-hacker-green text-xl" />
@@ -201,7 +201,7 @@ export default function Home() {
               </CardContent>
             </Card>
             
-            <Card className="bg-card-bg border-border-dark hover:border-hacker-green transition-all duration-300 hover:scale-105 glow-effect">
+            <Card className="bg-card-bg border-border-dark hover:border-hacker-green transition-all duration-300 hover:scale-105 glow-effect interactive-element">
               <CardContent className="p-6">
                 <div className="w-12 h-12 bg-hacker-green/20 rounded-lg flex items-center justify-center mb-4">
                   <PieChart className="text-hacker-green text-xl" />
@@ -217,11 +217,19 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border-dark bg-card-bg/30 backdrop-blur-sm">
+      <footer className="border-t border-border-dark bg-card-bg/30 backdrop-blur-sm mega-footer">
+        {/* Large WIKI Text */}
+        <div className="relative py-20 overflow-hidden">
+          <div className="text-center">
+            <div className="mega-text terminal-font">WIKI</div>
+            <p className="text-2xl text-gray-300 mt-4 font-light">Security Intelligence</p>
+          </div>
+        </div>
+        
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="space-y-4">
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-3 interactive-element">
                 <div className="w-6 h-6 bg-hacker-green rounded flex items-center justify-center">
                   <Shield className="text-dark-bg text-sm" size={14} />
                 </div>
@@ -231,35 +239,35 @@ export default function Home() {
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4 text-hacker-green">Scanner</h4>
+              <h4 className="font-semibold mb-4 text-hacker-green cursor-pointer-custom">Scanner</h4>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#" className="hover-text-hacker-green transition-colors">SQL Injection</a></li>
-                <li><a href="#" className="hover-text-hacker-green transition-colors">XSS Detection</a></li>
-                <li><a href="#" className="hover-text-hacker-green transition-colors">API Testing</a></li>
-                <li><a href="#" className="hover-text-hacker-green transition-colors">CSRF Analysis</a></li>
+                <li><a href="#" className="hover-text-hacker-green transition-colors cursor-pointer-custom">SQL Injection</a></li>
+                <li><a href="#" className="hover-text-hacker-green transition-colors cursor-pointer-custom">XSS Detection</a></li>
+                <li><a href="#" className="hover-text-hacker-green transition-colors cursor-pointer-custom">API Testing</a></li>
+                <li><a href="#" className="hover-text-hacker-green transition-colors cursor-pointer-custom">CSRF Analysis</a></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4 text-hacker-green">Resources</h4>
+              <h4 className="font-semibold mb-4 text-hacker-green cursor-pointer-custom">Resources</h4>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#" className="hover-text-hacker-green transition-colors">Documentation</a></li>
-                <li><a href="#" className="hover-text-hacker-green transition-colors">API Reference</a></li>
-                <li><a href="#" className="hover-text-hacker-green transition-colors">Security Guide</a></li>
-                <li><a href="#" className="hover-text-hacker-green transition-colors">Best Practices</a></li>
+                <li><a href="#" className="hover-text-hacker-green transition-colors cursor-pointer-custom">Documentation</a></li>
+                <li><a href="#" className="hover-text-hacker-green transition-colors cursor-pointer-custom">API Reference</a></li>
+                <li><a href="#" className="hover-text-hacker-green transition-colors cursor-pointer-custom">Security Guide</a></li>
+                <li><a href="#" className="hover-text-hacker-green transition-colors cursor-pointer-custom">Best Practices</a></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4 text-hacker-green">Connect</h4>
+              <h4 className="font-semibold mb-4 text-hacker-green cursor-pointer-custom">Connect</h4>
               <div className="flex space-x-4">
-                <a href="#" className="w-8 h-8 bg-border-dark rounded-lg flex items-center justify-center hover:bg-hacker-green hover:text-dark-bg transition-all duration-200 hover:scale-110">
+                <a href="#" className="w-8 h-8 bg-border-dark rounded-lg flex items-center justify-center hover:bg-hacker-green hover:text-dark-bg transition-all duration-200 hover:scale-110 interactive-element">
                   <span className="text-sm">G</span>
                 </a>
-                <a href="#" className="w-8 h-8 bg-border-dark rounded-lg flex items-center justify-center hover:bg-hacker-green hover:text-dark-bg transition-all duration-200 hover:scale-110">
+                <a href="#" className="w-8 h-8 bg-border-dark rounded-lg flex items-center justify-center hover:bg-hacker-green hover:text-dark-bg transition-all duration-200 hover:scale-110 interactive-element">
                   <span className="text-sm">T</span>
                 </a>
-                <a href="#" className="w-8 h-8 bg-border-dark rounded-lg flex items-center justify-center hover:bg-hacker-green hover:text-dark-bg transition-all duration-200 hover:scale-110">
+                <a href="#" className="w-8 h-8 bg-border-dark rounded-lg flex items-center justify-center hover:bg-hacker-green hover:text-dark-bg transition-all duration-200 hover:scale-110 interactive-element">
                   <span className="text-sm">D</span>
                 </a>
               </div>
@@ -268,7 +276,7 @@ export default function Home() {
           
           <div className="border-t border-border-dark mt-8 pt-8 text-center">
             <p className="text-gray-400 text-sm terminal-font">
-              © 2024 WIKI Security Scanner. <span className="text-hacker-green">Powered by AI</span>
+              © 2024 WIKI Security Scanner. <span className="text-hacker-green cursor-pointer-custom">Powered by AI</span>
             </p>
           </div>
         </div>
