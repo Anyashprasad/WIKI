@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useLocation } from "wouter";
 import { useMutation } from "@tanstack/react-query";
 import { Shield, Globe, MessageCircle, FileText, Bug, Bot, PieChart } from "lucide-react";
@@ -16,6 +16,8 @@ export default function Home() {
   const [input, setInput] = useState("");
   const [, setLocation] = useLocation();
   const { toast } = useToast();
+  const wikiRef = useRef<HTMLDivElement>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   const scanMutation = useMutation({
     mutationFn: async (data: InsertScan) => {
@@ -77,6 +79,46 @@ export default function Home() {
     if (e.key === 'Enter') {
       handleSubmit();
     }
+  };
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (wikiRef.current) {
+        const rect = wikiRef.current.getBoundingClientRect();
+        setMousePos({
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top
+        });
+      }
+    };
+
+    const wikiElement = wikiRef.current;
+    if (wikiElement) {
+      wikiElement.addEventListener('mousemove', handleMouseMove);
+      return () => wikiElement.removeEventListener('mousemove', handleMouseMove);
+    }
+  }, []);
+
+  const getLetterProximity = (index: number) => {
+    if (!wikiRef.current) return 'far';
+    
+    const letters = wikiRef.current.children;
+    if (!letters[index]) return 'far';
+    
+    const letterRect = letters[index].getBoundingClientRect();
+    const wikiRect = wikiRef.current.getBoundingClientRect();
+    
+    const letterCenterX = letterRect.left + letterRect.width / 2 - wikiRect.left;
+    const letterCenterY = letterRect.top + letterRect.height / 2 - wikiRect.top;
+    
+    const distance = Math.sqrt(
+      Math.pow(mousePos.x - letterCenterX, 2) + 
+      Math.pow(mousePos.y - letterCenterY, 2)
+    );
+    
+    if (distance < 80) return 'active';
+    if (distance < 150) return 'near';
+    return 'far';
   };
 
   return (
@@ -221,7 +263,20 @@ export default function Home() {
         {/* Large WIKI Text */}
         <div className="relative py-20 overflow-hidden">
           <div className="text-center">
-            <div className="mega-text terminal-font interactive-element" data-testid="mega-wiki-text">WIKI</div>
+            <div 
+              ref={wikiRef}
+              className="mega-text terminal-font" 
+              data-testid="mega-wiki-text"
+            >
+              {['W', 'I', 'K', 'I'].map((letter, index) => (
+                <span 
+                  key={index}
+                  className={`mega-letter ${getLetterProximity(index)}`}
+                >
+                  {letter}
+                </span>
+              ))}
+            </div>
             <p className="text-2xl text-gray-300 mt-4 font-light">Security Intelligence</p>
           </div>
         </div>
