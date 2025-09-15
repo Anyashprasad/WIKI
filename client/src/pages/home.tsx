@@ -221,7 +221,7 @@ export default function Home() {
         {/* Large WIKI Text */}
         <div className="relative py-20 overflow-hidden">
           <div className="text-center">
-            <div className="mega-text terminal-font">WIKI</div>
+            <div className="mega-text terminal-font interactive-element" data-testid="mega-wiki-text">WIKI</div>
             <p className="text-2xl text-gray-300 mt-4 font-light">Security Intelligence</p>
           </div>
         </div>

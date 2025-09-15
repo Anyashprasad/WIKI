@@ -52,7 +52,7 @@ async function callOllama(prompt: string): Promise<string> {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: process.env.OLLAMA_MODEL || "llama3",
+        model: process.env.OLLAMA_MODEL || "kala185/CyberKiller:0.1",
         prompt: prompt,
         stream: false,
       }),

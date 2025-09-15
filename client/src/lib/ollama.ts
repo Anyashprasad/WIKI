@@ -20,7 +20,7 @@ export class OllamaClient {
   private baseUrl: string;
   private defaultModel: string;
 
-  constructor(baseUrl = 'http://localhost:11434', defaultModel = 'llama3') {
+  constructor(baseUrl = 'http://localhost:11434', defaultModel = 'kala185/CyberKiller:0.1') {
     this.baseUrl = baseUrl;
     this.defaultModel = defaultModel;
   }
