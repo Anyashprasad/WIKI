@@ -162,38 +162,6 @@
     filter: brightness(1.1);
   }
 
-  .mega-text {
-    font-size: clamp(8rem, 20vw, 24rem);
-    font-weight: 900;
-    line-height: 0.8;
-    user-select: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    gap: 0.2em;
-  }
-
-  .mega-letter {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    color: var(--hacker-green);
-    opacity: 0.4;
-    text-shadow: 0 0 0px var(--hacker-green);
-  }
-
-  .mega-letter.active {
-    opacity: 1;
-    text-shadow: 
-      0 0 10px var(--hacker-green),
-      0 0 20px var(--hacker-green),
-      0 0 30px var(--hacker-green);
-    transform: scale(1.1);
-  }
-
-  .mega-letter.near {
-    opacity: 0.7;
-    text-shadow: 0 0 5px var(--hacker-green);
-    transform: scale(1.05);
-  }
 
   .mega-footer {
     position: relative;
@@ -275,7 +243,3 @@
   50% { transform: translateY(-10px); }
 }
 
-@keyframes pulse-scale {
-  0%, 100% { transform: scale(1.05); }
-  50% { transform: scale(1.08); }
-}

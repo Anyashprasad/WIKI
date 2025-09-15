@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { useLocation } from "wouter";
 import { useMutation } from "@tanstack/react-query";
 import { Shield, Globe, MessageCircle, FileText, Bug, Bot, PieChart } from "lucide-react";
@@ -8,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import LoadingModal from "@/components/loading-modal";
+import Footer from "@/components/Footer";
 import type { InsertScan, InsertChatMessage } from "@shared/schema";
 
 const urlRegex = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
@@ -16,8 +17,6 @@ export default function Home() {
   const [input, setInput] = useState("");
   const [, setLocation] = useLocation();
   const { toast } = useToast();
-  const wikiRef = useRef<HTMLDivElement>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   const scanMutation = useMutation({
     mutationFn: async (data: InsertScan) => {
@@ -81,45 +80,6 @@ export default function Home() {
     }
   };
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (wikiRef.current) {
-        const rect = wikiRef.current.getBoundingClientRect();
-        setMousePos({
-          x: e.clientX - rect.left,
-          y: e.clientY - rect.top
-        });
-      }
-    };
-
-    const wikiElement = wikiRef.current;
-    if (wikiElement) {
-      wikiElement.addEventListener('mousemove', handleMouseMove);
-      return () => wikiElement.removeEventListener('mousemove', handleMouseMove);
-    }
-  }, []);
-
-  const getLetterProximity = (index: number) => {
-    if (!wikiRef.current) return 'far';
-    
-    const letters = wikiRef.current.children;
-    if (!letters[index]) return 'far';
-    
-    const letterRect = letters[index].getBoundingClientRect();
-    const wikiRect = wikiRef.current.getBoundingClientRect();
-    
-    const letterCenterX = letterRect.left + letterRect.width / 2 - wikiRect.left;
-    const letterCenterY = letterRect.top + letterRect.height / 2 - wikiRect.top;
-    
-    const distance = Math.sqrt(
-      Math.pow(mousePos.x - letterCenterX, 2) + 
-      Math.pow(mousePos.y - letterCenterY, 2)
-    );
-    
-    if (distance < 80) return 'active';
-    if (distance < 150) return 'near';
-    return 'far';
-  };
 
   return (
     <div className="min-h-screen flex flex-col bg-dark-bg text-white">
@@ -259,83 +219,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border-dark bg-card-bg/30 backdrop-blur-sm mega-footer">
-        {/* Large WIKI Text */}
-        <div className="relative py-20 overflow-hidden">
-          <div className="text-center">
-            <div 
-              ref={wikiRef}
-              className="mega-text terminal-font" 
-              data-testid="mega-wiki-text"
-            >
-              {['W', 'I', 'K', 'I'].map((letter, index) => (
-                <span 
-                  key={index}
-                  className={`mega-letter ${getLetterProximity(index)}`}
-                >
-                  {letter}
-                </span>
-              ))}
-            </div>
-            <p className="text-2xl text-gray-300 mt-4 font-light">Security Intelligence</p>
-          </div>
-        </div>
-        
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3 interactive-element">
-                <div className="w-6 h-6 bg-hacker-green rounded flex items-center justify-center">
-                  <Shield className="text-dark-bg text-sm" size={14} />
-                </div>
-                <span className="font-bold terminal-font text-hacker-green">WIKI</span>
-              </div>
-              <p className="text-gray-400 text-sm">Professional security scanning for modern web applications</p>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-4 text-hacker-green cursor-pointer-custom">Scanner</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#" className="hover-text-hacker-green transition-colors cursor-pointer-custom">SQL Injection</a></li>
-                <li><a href="#" className="hover-text-hacker-green transition-colors cursor-pointer-custom">XSS Detection</a></li>
-                <li><a href="#" className="hover-text-hacker-green transition-colors cursor-pointer-custom">API Testing</a></li>
-                <li><a href="#" className="hover-text-hacker-green transition-colors cursor-pointer-custom">CSRF Analysis</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-4 text-hacker-green cursor-pointer-custom">Resources</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#" className="hover-text-hacker-green transition-colors cursor-pointer-custom">Documentation</a></li>
-                <li><a href="#" className="hover-text-hacker-green transition-colors cursor-pointer-custom">API Reference</a></li>
-                <li><a href="#" className="hover-text-hacker-green transition-colors cursor-pointer-custom">Security Guide</a></li>
-                <li><a href="#" className="hover-text-hacker-green transition-colors cursor-pointer-custom">Best Practices</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-4 text-hacker-green cursor-pointer-custom">Connect</h4>
-              <div className="flex space-x-4">
-                <a href="#" className="w-8 h-8 bg-border-dark rounded-lg flex items-center justify-center hover:bg-hacker-green hover:text-dark-bg transition-all duration-200 hover:scale-110 interactive-element">
-                  <span className="text-sm">G</span>
-                </a>
-                <a href="#" className="w-8 h-8 bg-border-dark rounded-lg flex items-center justify-center hover:bg-hacker-green hover:text-dark-bg transition-all duration-200 hover:scale-110 interactive-element">
-                  <span className="text-sm">T</span>
-                </a>
-                <a href="#" className="w-8 h-8 bg-border-dark rounded-lg flex items-center justify-center hover:bg-hacker-green hover:text-dark-bg transition-all duration-200 hover:scale-110 interactive-element">
-                  <span className="text-sm">D</span>
-                </a>
-              </div>
-            </div>
-          </div>
-          
-          <div className="border-t border-border-dark mt-8 pt-8 text-center">
-            <p className="text-gray-400 text-sm terminal-font">
-              © 2024 WIKI Security Scanner. <span className="text-hacker-green cursor-pointer-custom">Powered by AI</span>
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       {/* Loading Modal */}
       {scanMutation.isPending && <LoadingModal url={input} />}
