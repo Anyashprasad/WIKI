@@ -13,8 +13,9 @@ export async function apiRequest(
   data?: unknown | undefined,
 ): Promise<Response> {
   // Ensure full URL by prepending server base URL if it's a relative path
-  const fullUrl = url.startsWith('http') ? url : `http://localhost:5000${url}`;
-  
+  const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
+
   const res = await fetch(fullUrl, {
     method,
     headers: data ? { "Content-Type": "application/json" } : {},
@@ -31,15 +32,15 @@ export const getQueryFn: <T>(options: {
   on401: UnauthorizedBehavior;
 }) => QueryFunction<T> =
   ({ on401: unauthorizedBehavior }) =>
-  async ({ queryKey }) => {
-    const res = await apiRequest("GET", queryKey.join("/") as string);
+    async ({ queryKey }) => {
+      const res = await apiRequest("GET", queryKey.join("/") as string);
 
-    if (unauthorizedBehavior === "returnNull" && res.status === 401) {
-      return null;
-    }
+      if (unauthorizedBehavior === "returnNull" && res.status === 401) {
+        return null;
+      }
 
-    return await res.json();
-  };
+      return await res.json();
+    };
 
 export const queryClient = new QueryClient({
   defaultOptions: {

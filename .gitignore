@@ -36,4 +36,5 @@ test-*.html
 arts/
 *.log
 .env
+.env.production
 
