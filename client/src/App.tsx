@@ -6,12 +6,16 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import ScanResults from "@/pages/scan-results";
+import FixDetails from "@/pages/fix-details";
+import About from "@/pages/about";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/scan/:id" component={ScanResults} />
+      <Route path="/fix/:id" component={FixDetails} />
+      <Route path="/about" component={About} />
       <Route component={NotFound} />
     </Switch>
   );
@@ -21,10 +25,8 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <div className="dark">
-          <Toaster />
-          <Router />
-        </div>
+        <Router />
+        <Toaster />
       </TooltipProvider>
     </QueryClientProvider>
   );

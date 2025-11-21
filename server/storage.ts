@@ -7,7 +7,7 @@ export interface IStorage {
   getScan(id: string): Promise<Scan | undefined>;
   updateScan(id: string, updates: Partial<Scan>): Promise<Scan | undefined>;
   getScans(): Promise<Scan[]>;
-  
+
   // Chat operations
   createChatMessage(message: InsertChatMessage): Promise<ChatMessage>;
   getChatMessage(id: string): Promise<ChatMessage | undefined>;
@@ -31,8 +31,12 @@ export class MemStorage implements IStorage {
       id,
       status: "pending",
       vulnerabilities: [],
+      pagesScanned: 0,
+      crawlStats: {},
       createdAt: new Date(),
       completedAt: null,
+      formsFound: 0,
+      endpointsTested: 0,
     };
     this.scans.set(id, scan);
     return scan;
@@ -45,7 +49,7 @@ export class MemStorage implements IStorage {
   async updateScan(id: string, updates: Partial<Scan>): Promise<Scan | undefined> {
     const scan = this.scans.get(id);
     if (!scan) return undefined;
-    
+
     const updatedScan = { ...scan, ...updates };
     this.scans.set(id, updatedScan);
     return updatedScan;
@@ -74,7 +78,7 @@ export class MemStorage implements IStorage {
   async updateChatMessage(id: string, updates: Partial<ChatMessage>): Promise<ChatMessage | undefined> {
     const message = this.chatMessages.get(id);
     if (!message) return undefined;
-    
+
     const updatedMessage = { ...message, ...updates };
     this.chatMessages.set(id, updatedMessage);
     return updatedMessage;
