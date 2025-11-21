@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useLocation, Link } from "wouter";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Shield, Globe, FileText, Bug, Bot, PieChart } from "lucide-react";
+import { Bug, Bot, PieChart } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,7 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import Footer from "@/components/Footer";
-import type { InsertScan } from "@shared/schema";
+import type { InsertScan } from "../../shared";
 
 const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-]*)*\/?$/;
 
