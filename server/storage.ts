@@ -1,4 +1,4 @@
-import { type Scan, type InsertScan, type ChatMessage, type InsertChatMessage, type Vulnerability } from "@shared/schema";
+import { type Scan, type InsertScan, type ChatMessage, type InsertChatMessage, type Vulnerability } from "../shared";
 import { randomUUID } from "crypto";
 
 export interface IStorage {

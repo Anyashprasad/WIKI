@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertScanSchema, insertChatMessageSchema, type Vulnerability } from "@shared/schema";
+import { insertScanSchema, insertChatMessageSchema, type Vulnerability } from "../shared";
 import { z } from "zod";
 import * as fs from "fs";
 import * as path from "path";
