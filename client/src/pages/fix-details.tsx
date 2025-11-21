@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-import type { Vulnerability } from "../../shared";
+import type { Vulnerability } from "@shared";
 
 const severityColors = {
   Critical: "bg-red-500/10 border-red-500/20 text-red-400",

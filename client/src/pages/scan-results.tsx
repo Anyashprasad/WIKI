@@ -10,7 +10,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import VulnerabilityChart from "@/components/vulnerability-chart";
-import type { Scan, Vulnerability } from "../../shared";
+import type { Scan, Vulnerability } from "@shared";
 
 const severityColors = {
   Critical: "bg-red-500/10 border-red-500/20 text-red-400",

@@ -10,7 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import Footer from "@/components/Footer";
-import type { InsertScan } from "../../shared";
+import type { InsertScan } from "@shared";
 
 const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-]*)*\/?$/;
 
