@@ -28,7 +28,7 @@ export class OllamaClient {
   async generate(prompt: string, options?: Partial<OllamaRequest>): Promise<string> {
     try {
       const request: OllamaRequest = {
-        model: options?.model || process.env.OLLAMA_MODEL || this.defaultModel,
+        model: options?.model || this.defaultModel,
         prompt,
         stream: false,
         ...options
