@@ -91,12 +91,16 @@ export default function ScanResults() {
   useEffect(() => {
     if (!id || scan?.status === 'completed') return;
 
-    const socket = io({
+    // Get the backend URL from environment or default to localhost
+    const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+    const socket = io(backendUrl, {
       transports: ['websocket', 'polling'],
+      withCredentials: true,
     });
 
     socket.on('connect', () => {
-      console.log('Socket.IO connected');
+      console.log('Socket.IO connected to backend');
       socket.emit('join-scan', id);
     });
 
@@ -125,6 +129,10 @@ export default function ScanResults() {
 
     socket.on('disconnect', () => {
       console.log('Socket.IO disconnected');
+    });
+
+    socket.on('connect_error', (error) => {
+      console.error('Socket.IO connection error:', error);
     });
 
     return () => {
