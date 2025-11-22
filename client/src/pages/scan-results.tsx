@@ -87,44 +87,49 @@ export default function ScanResults() {
     }
   }, [initialScan]);
 
-  // WebSocket integration
   // WebSocket connection for real-time updates
   useEffect(() => {
     if (!id || scan?.status === 'completed') return;
 
-    const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-    const wsUrl = `${protocol}//${window.location.host}/ws`;
-    const socket = new WebSocket(wsUrl);
+    const socket = io({
+      transports: ['websocket', 'polling'],
+    });
 
-    socket.onopen = () => {
-      socket.send(JSON.stringify({ type: 'subscribe', scanId: id }));
-    };
+    socket.on('connect', () => {
+      console.log('Socket.IO connected');
+      socket.emit('join-scan', id);
+    });
 
-    socket.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      if (data.type === 'scan-progress' && data.scanId === parseInt(id)) {
-        setProgress(prev => ({
-          ...prev,
-          ...data.data,
-          logs: [...prev.logs, ...(data.data.logs || [])].slice(-50) // Keep last 50 logs
-        }));
+    socket.on('scan-progress', (data: ScanProgress) => {
+      console.log('Received scan progress:', data);
+      setProgress(prev => ({
+        ...prev,
+        ...data,
+        logs: [...prev.logs, ...(data.logs || [])].slice(-50) // Keep last 50 logs
+      }));
 
-        // Invalidate query to fetch latest results when scan completes
-        if (data.data.status === 'completed') {
-          queryClient.invalidateQueries({ queryKey: [`/api/scans/${id}`] });
-        }
+      // Invalidate query to fetch latest results when scan completes
+      if (data.status === 'completed') {
+        queryClient.invalidateQueries({ queryKey: [`/api/scans/${id}`] });
       }
-    };
+    });
 
-    socket.onerror = (error) => {
-      console.error('WebSocket error:', error);
+    socket.on('scan-error', (error) => {
+      console.error('Scan error:', error);
       toast({
         title: "Scan Error",
+        description: error.message || "An error occurred during scanning",
+        variant: "destructive",
       });
-    };
+    });
+
+    socket.on('disconnect', () => {
+      console.log('Socket.IO disconnected');
+    });
 
     return () => {
-      socket.close();
+      socket.emit('leave-scan', id);
+      socket.disconnect();
     };
   }, [id, toast]);
 
