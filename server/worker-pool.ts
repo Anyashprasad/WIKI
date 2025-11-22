@@ -1,7 +1,11 @@
 import { Worker } from 'worker_threads';
 import path from 'path';
 import { EventEmitter } from 'events';
+import { fileURLToPath } from 'url';
 import { CrawledPage } from './web-crawler';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export interface Task {
   id: string;
@@ -52,8 +56,8 @@ export class WorkerPool extends EventEmitter {
   }
 
   private initializeWorkers() {
-    // Always point to the .cjs in the server folder relative to project root
-    const workerPath = path.resolve(process.cwd(), 'server', 'scan-worker.cjs');
+    // Resolve worker path relative to this file
+    const workerPath = path.resolve(__dirname, 'scan-worker.cjs');
 
     for (let i = 0; i < this.workerCount; i++) {
       this.createWorker(i, workerPath);
