@@ -23,6 +23,7 @@ WORKDIR /app
 
 # Copy built server output only
 COPY --from=base /app/server/dist ./dist
+COPY --from=base /app/server/scan-worker.cjs ./dist/
 COPY --from=base /app/server/package.json .
 
 # Install production dependencies only
