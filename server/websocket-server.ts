@@ -25,7 +25,13 @@ export class WebSocketServer {
   constructor(server: any) {
     this.io = new SocketIOServer(server, {
       cors: {
-        origin: "http://localhost:3000",
+        origin: [
+          "https://www.wikiscan.dev",
+          "https://wikiscan.dev",
+          "https://wiki-client-i978dzgi8-23051977-8870s-projects.vercel.app",
+          "http://localhost:5173",
+          "http://localhost:3000"
+        ],
         methods: ["GET", "POST"],
         credentials: true
       }
