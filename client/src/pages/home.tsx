@@ -37,7 +37,7 @@ export default function Home() {
     },
     onSuccess: (scan) => {
       // Navigate to results page immediately
-      setLocation(`/ scan / ${scan.id} `);
+      setLocation(`/scan/${scan.id}`);
     },
     onError: (error) => {
       console.error("Scan mutation error:", error); // Debug log
