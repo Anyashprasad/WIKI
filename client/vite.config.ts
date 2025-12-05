@@ -5,18 +5,12 @@ import { fileURLToPath } from "url";
 
 
 
+
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
     plugins: [react()],
-    css: {
-        postcss: {
-            plugins: {
-                tailwindcss: {},
-                autoprefixer: {},
-            },
-        },
-    },
     resolve: {
         alias: {
             '@': path.resolve(__dirname, './src'),
