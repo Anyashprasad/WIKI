@@ -106,50 +106,42 @@ export default function About() {
                         </Card>
                     </motion.div>
 
-                    {/* Tech Stack Box */}
-                    <motion.div variants={itemVariants} className="mb-12">
-                        <h2 className="text-2xl font-bold mb-6 text-white flex items-center gap-2">
-                            <Code className="h-6 w-6 text-green-400" /> Tech Stack
-                        </h2>
-                        <Card className="bg-gray-900 border-gray-700 relative overflow-hidden group">
-                            <div className="absolute inset-0 bg-green-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                            <CardContent className="p-8 relative z-10">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                                    <div>
-                                        <div className="flex items-center gap-3 mb-6">
-                                            <div className="p-2 bg-green-400/10 rounded-lg">
-                                                <Terminal className="h-5 w-5 text-green-400" />
-                                            </div>
-                                            <h3 className="text-xl font-semibold text-white">Programming & Tools</h3>
-                                        </div>
-                                        <div className="flex flex-wrap gap-3">
-                                            {["Python", "Java", "C", "SQL", "Linux", "VMware", "Fortinet", "GitHub", "Flask"].map(skill => (
-                                                <Badge key={skill} variant="outline" className="border-green-400/30 text-green-300 hover:bg-green-400/10 transition-colors py-1.5 px-3">
-                                                    {skill}
-                                                </Badge>
-                                            ))}
-                                        </div>
+                    {/* Tech Stack */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                        <div>
+                            <h2 className="text-2xl font-bold mb-6 text-white flex items-center gap-2">
+                                <Terminal className="h-6 w-6 text-green-400" /> Programming & Tools
+                            </h2>
+                            <Card className="bg-gray-900 border-gray-700 h-full">
+                                <CardContent className="pt-6">
+                                    <div className="flex flex-wrap gap-3">
+                                        {["Python", "Java", "C", "SQL", "Linux", "VMware", "Fortinet", "GitHub", "Flask"].map(skill => (
+                                            <Badge key={skill} variant="outline" className="border-green-400/30 text-green-300 hover:bg-green-400/10 transition-colors py-1.5 px-3">
+                                                {skill}
+                                            </Badge>
+                                        ))}
                                     </div>
+                                </CardContent>
+                            </Card>
+                        </div>
 
-                                    <div>
-                                        <div className="flex items-center gap-3 mb-6">
-                                            <div className="p-2 bg-blue-400/10 rounded-lg">
-                                                <Bot className="h-5 w-5 text-blue-400" />
-                                            </div>
-                                            <h3 className="text-xl font-semibold text-white">Cybersecurity & AI</h3>
-                                        </div>
-                                        <div className="flex flex-wrap gap-3">
-                                            {["Burp Suite", "OpenVAS", "Zenmap", "Wireshark", "Deep Learning", "CNN", "XceptionNet", "VAPT"].map(skill => (
-                                                <Badge key={skill} variant="outline" className="border-blue-400/30 text-blue-300 hover:bg-blue-400/10 transition-colors py-1.5 px-3">
-                                                    {skill}
-                                                </Badge>
-                                            ))}
-                                        </div>
+                        <div>
+                            <h2 className="text-2xl font-bold mb-6 text-white flex items-center gap-2">
+                                <Bot className="h-6 w-6 text-blue-400" /> Cybersecurity & AI
+                            </h2>
+                            <Card className="bg-gray-900 border-gray-700 h-full">
+                                <CardContent className="pt-6">
+                                    <div className="flex flex-wrap gap-3">
+                                        {["Burp Suite", "OpenVAS", "Zenmap", "Wireshark", "Deep Learning", "CNN", "XceptionNet", "VAPT"].map(skill => (
+                                            <Badge key={skill} variant="outline" className="border-blue-400/30 text-blue-300 hover:bg-blue-400/10 transition-colors py-1.5 px-3">
+                                                {skill}
+                                            </Badge>
+                                        ))}
                                     </div>
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </motion.div>
+                                </CardContent>
+                            </Card>
+                        </div>
+                    </div>
 
                     {/* Experience */}
                     <motion.div variants={itemVariants} className="mb-12">
