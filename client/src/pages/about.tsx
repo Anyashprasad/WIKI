@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Phone, Award, Briefcase, Code, GraduationCap, Terminal } from "lucide-react";
+import { Github, Linkedin, Mail, Phone, Award, Briefcase, Code, GraduationCap, Terminal, Bot } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Footer from "@/components/Footer";
@@ -106,37 +106,49 @@ export default function About() {
                         </Card>
                     </motion.div>
 
-                    {/* Skills */}
+                    {/* Tech Stack Box */}
                     <motion.div variants={itemVariants} className="mb-12">
                         <h2 className="text-2xl font-bold mb-6 text-white flex items-center gap-2">
-                            <Code className="h-6 w-6 text-green-400" /> Technical Skills
+                            <Code className="h-6 w-6 text-green-400" /> Tech Stack
                         </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <Card className="bg-gray-900 border-gray-700">
-                                <CardHeader>
-                                    <CardTitle className="text-lg text-white">Programming & Tools</CardTitle>
-                                </CardHeader>
-                                <CardContent className="flex flex-wrap gap-2">
-                                    {["Python", "Java", "C", "SQL", "Linux", "VMware", "Fortinet", "GitHub", "Flask"].map(skill => (
-                                        <Badge key={skill} variant="outline" className="border-green-400/30 text-green-400">
-                                            {skill}
-                                        </Badge>
-                                    ))}
-                                </CardContent>
-                            </Card>
-                            <Card className="bg-gray-900 border-gray-700">
-                                <CardHeader>
-                                    <CardTitle className="text-lg text-white">Cybersecurity & AI</CardTitle>
-                                </CardHeader>
-                                <CardContent className="flex flex-wrap gap-2">
-                                    {["Burp Suite", "OpenVAS", "Zenmap", "Wireshark", "Deep Learning", "CNN", "XceptionNet", "VAPT"].map(skill => (
-                                        <Badge key={skill} variant="outline" className="border-blue-400/30 text-blue-400">
-                                            {skill}
-                                        </Badge>
-                                    ))}
-                                </CardContent>
-                            </Card>
-                        </div>
+                        <Card className="bg-gray-900 border-gray-700 relative overflow-hidden group">
+                            <div className="absolute inset-0 bg-green-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            <CardContent className="p-8 relative z-10">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                                    <div>
+                                        <div className="flex items-center gap-3 mb-6">
+                                            <div className="p-2 bg-green-400/10 rounded-lg">
+                                                <Terminal className="h-5 w-5 text-green-400" />
+                                            </div>
+                                            <h3 className="text-xl font-semibold text-white">Programming & Tools</h3>
+                                        </div>
+                                        <div className="flex flex-wrap gap-3">
+                                            {["Python", "Java", "C", "SQL", "Linux", "VMware", "Fortinet", "GitHub", "Flask"].map(skill => (
+                                                <Badge key={skill} variant="outline" className="border-green-400/30 text-green-300 hover:bg-green-400/10 transition-colors py-1.5 px-3">
+                                                    {skill}
+                                                </Badge>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div className="flex items-center gap-3 mb-6">
+                                            <div className="p-2 bg-blue-400/10 rounded-lg">
+                                                <Bot className="h-5 w-5 text-blue-400" />
+                                            </div>
+                                            <h3 className="text-xl font-semibold text-white">Cybersecurity & AI</h3>
+                                        </div>
+                                        <div className="flex flex-wrap gap-3">
+                                            {["Burp Suite", "OpenVAS", "Zenmap", "Wireshark", "Deep Learning", "CNN", "XceptionNet", "VAPT"].map(skill => (
+                                                <Badge key={skill} variant="outline" className="border-blue-400/30 text-blue-300 hover:bg-blue-400/10 transition-colors py-1.5 px-3">
+                                                    {skill}
+                                                </Badge>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
                     </motion.div>
 
                     {/* Experience */}
@@ -280,13 +292,6 @@ export default function About() {
                                         <div>
                                             <p className="text-white font-medium">Fortinet Network Security Expert Level 1: Certified Associate</p>
                                             <p className="text-sm text-gray-400">Dec 2024 – Dec 2026</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-start gap-3">
-                                        <Award className="h-5 w-5 text-green-400 mt-1" />
-                                        <div>
-                                            <p className="text-white font-medium">Google Cybersecurity Professional Certificate</p>
-                                            <p className="text-sm text-gray-400">Jan 2025 – Jun 2025</p>
                                         </div>
                                     </div>
                                 </CardContent>
