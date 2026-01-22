@@ -36,8 +36,9 @@ export default function Header() {
                 <div className="md:hidden">
                     <Sheet>
                         <SheetTrigger asChild>
-                            <Button variant="ghost" size="icon" className="text-white hover:text-green-400">
+                            <Button variant="outline" size="icon" className="border-gray-700 bg-gray-900 text-white hover:bg-gray-800 hover:text-green-400">
                                 <Menu className="h-6 w-6" />
+                                <span className="sr-only">Menu</span>
                             </Button>
                         </SheetTrigger>
                         <SheetContent side="right" className="bg-gray-900 border-gray-800 w-[240px] sm:w-[300px]">
