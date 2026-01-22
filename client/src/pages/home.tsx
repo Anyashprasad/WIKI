@@ -11,6 +11,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import Footer from "@/components/Footer";
 import type { InsertScan } from "../../../shared";
+import Header from "@/components/Header";
 
 const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-]*)*\/?$/;
 
@@ -104,31 +105,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white relative overflow-x-hidden">
       {/* Header */}
-      <header className="relative z-10 px-6 py-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <img
-                src="/logo.svg"
-                alt="WIKI Security Scanner"
-                className="h-12 w-auto"
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                  // Fallback could be added here if needed
-                }}
-              />
-            </div>
-            <nav className="hidden md:flex items-center space-x-8">
-              <Link href="/">
-                <a className="text-green-400 transition-colors cursor-pointer">Scanner</a>
-              </Link>
-              <Link href="/about">
-                <a className="text-white hover:text-green-400 transition-colors cursor-pointer">About Me</a>
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* Hero Section */}
       <main className="relative z-10 px-6 py-12">

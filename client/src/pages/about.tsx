@@ -3,6 +3,7 @@ import { Github, Linkedin, Mail, Phone, Award, Briefcase, Code, GraduationCap, T
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import { useLocation } from "wouter";
 
 export default function About() {
@@ -33,21 +34,8 @@ export default function About() {
     return (
         <div className="min-h-screen bg-black text-white relative overflow-x-hidden">
             {/* Header */}
-            <header className="relative z-10 px-6 py-8 border-b border-gray-800">
-                <div className="max-w-6xl mx-auto flex items-center justify-between">
-                    <div className="flex items-center space-x-3 cursor-pointer" onClick={() => setLocation("/")}>
-                        <img
-                            src="/logo.svg"
-                            alt="WIKI Security Scanner"
-                            className="h-8 w-auto"
-                        />
-                    </div>
-                    <nav className="hidden md:flex items-center space-x-8">
-                        <a href="/" className="text-white hover:text-green-400 transition-colors">Scanner</a>
-                        <a href="/about" className="text-green-400 transition-colors">About Me</a>
-                    </nav>
-                </div>
-            </header>
+            {/* Header */}
+            <Header />
 
             <main className="relative z-10 px-6 py-12">
                 <motion.div
