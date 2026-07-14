@@ -89,7 +89,7 @@ export default function About() {
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="text-gray-300 leading-relaxed">
-                                B.Tech Computer Science student at KIIT (CGPA 7.63/10) with hands-on experience in cybersecurity, secure application development, penetration testing (VAPT), and applied AI. Proficient in Python, Java, C, Linux, OOP, databases, and security tools. Skilled in building AI-based security models (DeepFake Detection using CNN/XceptionNet) and leading technical teams. Strong communicator with proven leadership as Project Lead during SAIL internship.
+                                Full-stack developer and AI engineer with hands-on experience building React + TypeScript frontends, Python/Node.js backends, and production GenAI systems. Currently building an adaptive AI-driven IDS at VECC (Dept. of Atomic Energy) using LLMs, RAG pipelines, and autonomous agents. B.Tech CSE at KIIT (CGPA 7.87/10). Eager to integrate GenAI into modern web stacks and explore NoSQL databases.
                             </CardContent>
                         </Card>
                     </motion.div>
