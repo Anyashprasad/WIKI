@@ -185,13 +185,13 @@ export default function FixDetails() {
             </CardContent>
           </Card>
 
-          {/* AI Fix Generation */}
+          {/* Recommended Fix */}
           <Card className="bg-gray-900 border-gray-700">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle className="text-white flex items-center gap-2">
                   <Code className="h-5 w-5 text-green-400" />
-                  AI-Generated Fix
+                  Recommended Fix
                 </CardTitle>
                 {!generateFixMutation.data && (
                   <Button
@@ -209,7 +209,7 @@ export default function FixDetails() {
                 <div className="space-y-4">
                   <div className="flex items-center gap-2 text-green-400">
                     <div className="animate-spin w-5 h-5 border-2 border-green-400 border-t-transparent rounded-full"></div>
-                    <span>AI is analyzing the vulnerability...</span>
+                    <span>Analyzing the vulnerability...</span>
                   </div>
                   <div className="space-y-3">
                     <div className="h-4 bg-gray-800 rounded animate-pulse"></div>

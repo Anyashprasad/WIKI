@@ -139,7 +139,7 @@ export default function Footer() {
             {/* Top section */}
             <div className="px-8 py-6 grid grid-cols-1 md:grid-cols-3 items-center border-b border-gray-800 gap-4 md:gap-0">
               <div className="text-sm text-gray-400 text-center md:text-left">
-                ©2025 WIKI. All rights reserved.
+                ©{new Date().getFullYear()} WIKI. All rights reserved.
               </div>
 
               <div className="flex items-center justify-center space-x-4">
