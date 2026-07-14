@@ -1430,7 +1430,7 @@ var allowedOrigins = [
   "https://wikiscan.dev",
   "https://wiki-client-i978dzgi8-23051977-8870s-projects.vercel.app",
   "http://localhost:5173",
-  "https://floating-hamlet-02023.herokuapp.com"
+  "https://wiki-scanner-07c94b203146.herokuapp.com"
 ];
 var app = express();
 app.use(
