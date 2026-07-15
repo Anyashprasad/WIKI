@@ -683,9 +683,13 @@ var VulnerabilityScanner = class {
           this.pagesScanned++;
         }
       }
-      this.vulnerabilities = this.vulnerabilities.filter(
-        (vuln, index, self) => index === self.findIndex((v) => v.id === vuln.id)
-      );
+      const seen = /* @__PURE__ */ new Set();
+      this.vulnerabilities = this.vulnerabilities.filter((vuln) => {
+        const key = `${vuln.name}|${vuln.location}|${vuln.category}`;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
       const scanTime = Date.now() - this.scanStartTime;
       const crawlStats = this.crawler.getCrawlStats();
       console.log(`\u2705 Comprehensive scan completed!`);
@@ -1470,8 +1474,11 @@ app.use(express.urlencoded({ extended: false }));
   });
   if (process.env.NODE_ENV === "production") {
     const distPath = path2.resolve(__dirname2, "../../client/dist");
-    app.use(express.static(distPath));
+    app.use(express.static(distPath, { maxAge: "1h" }));
     app.get("*", (_req, res) => {
+      res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+      res.setHeader("Pragma", "no-cache");
+      res.setHeader("Expires", "0");
       res.sendFile(path2.join(distPath, "index.html"));
     });
   }
