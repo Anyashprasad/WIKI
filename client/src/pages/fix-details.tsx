@@ -60,8 +60,8 @@ export default function FixDetails() {
     },
     onError: () => {
       toast({
-        title: "Fix Generation Failed",
-        description: "Unable to generate fix suggestion. Please try again.",
+        title: "Failed to Retrieve Fix",
+        description: "Unable to load the fix suggestion. Please try again.",
         variant: "destructive",
       });
     },
@@ -170,21 +170,21 @@ export default function FixDetails() {
             <CardContent className="space-y-4">
               <div>
                 <h4 className="font-medium text-white mb-2">Description</h4>
-                <p className="text-gray-400">{vulnerability.description}</p>
+                <p className="text-gray-400 break-words">{vulnerability.description}</p>
               </div>
               <div>
                 <h4 className="font-medium text-white mb-2">Location</h4>
-                <code className="text-sm bg-black px-3 py-2 rounded text-green-400 block">
+                <code className="text-sm bg-black px-3 py-2 rounded text-green-400 block break-all whitespace-pre-wrap">
                   {vulnerability.location}
                 </code>
               </div>
               <div>
                 <h4 className="font-medium text-white mb-2">Impact</h4>
-                <p className="text-gray-400">{vulnerability.impact}</p>
+                <p className="text-gray-400 break-words">{vulnerability.impact}</p>
               </div>
             </CardContent>
           </Card>
-
+ 
           {/* Recommended Fix */}
           <Card className="bg-gray-900 border-gray-700">
             <CardHeader>
@@ -199,7 +199,7 @@ export default function FixDetails() {
                     disabled={generateFixMutation.isPending}
                     className="bg-green-400 text-black hover:bg-green-300"
                   >
-                    {generateFixMutation.isPending ? "Generating..." : "Generate Fix"}
+                    {generateFixMutation.isPending ? "Loading..." : "View Fix"}
                   </Button>
                 )}
               </div>
@@ -209,7 +209,7 @@ export default function FixDetails() {
                 <div className="space-y-4">
                   <div className="flex items-center gap-2 text-green-400">
                     <div className="animate-spin w-5 h-5 border-2 border-green-400 border-t-transparent rounded-full"></div>
-                    <span>Analyzing the vulnerability...</span>
+                    <span>Retrieving fix recommendation...</span>
                   </div>
                   <div className="space-y-3">
                     <div className="h-4 bg-gray-800 rounded animate-pulse"></div>
@@ -218,13 +218,13 @@ export default function FixDetails() {
                   </div>
                 </div>
               )}
-
+ 
               {generateFixMutation.data && (
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-green-400">
                       <CheckCircle className="h-5 w-5" />
-                      <span>Fix Generated Successfully</span>
+                      <span>Fix Recommendation</span>
                     </div>
                     <Button
                       variant="outline"
@@ -243,11 +243,11 @@ export default function FixDetails() {
                   </div>
                 </div>
               )}
-
+ 
               {generateFixMutation.error && (
                 <div className="text-center py-8">
                   <AlertTriangle className="h-12 w-12 text-red-400 mx-auto mb-4" />
-                  <p className="text-gray-400">Failed to generate fix. Please try again.</p>
+                  <p className="text-gray-400">Failed to retrieve fix. Please try again.</p>
                 </div>
               )}
             </CardContent>

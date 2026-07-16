@@ -444,17 +444,17 @@ export default function ScanResults() {
                           <CardContent className="space-y-4">
                             <div>
                               <h4 className="font-medium text-white mb-2">Description</h4>
-                              <p className="text-gray-400">{vulnerability.description}</p>
+                              <p className="text-gray-400 break-words">{vulnerability.description}</p>
                             </div>
                             <div>
                               <h4 className="font-medium text-white mb-2">Location</h4>
-                              <code className="text-sm bg-black px-2 py-1 rounded text-green-400">
+                              <code className="text-sm bg-black px-2 py-1 rounded text-green-400 break-all whitespace-pre-wrap">
                                 {vulnerability.location}
                               </code>
                             </div>
                             <div>
                               <h4 className="font-medium text-white mb-2">Impact</h4>
-                              <p className="text-gray-400">{vulnerability.impact}</p>
+                              <p className="text-gray-400 break-words">{vulnerability.impact}</p>
                             </div>
                           </CardContent>
                         </Card>
