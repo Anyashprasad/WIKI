@@ -69,7 +69,6 @@ export default function ScanResults() {
     queryKey: ['/api/scans', id],
   });
 
-  const [scan, setScan] = useState<Scan | null>(null);
   const [progress, setProgress] = useState<ScanProgress>({
     pagesScanned: 0,
     totalPages: 0,
@@ -80,16 +79,9 @@ export default function ScanResults() {
   });
   const socketRef = useRef<Socket | null>(null);
 
-  // Initialize scan state from query result and keep it in sync
-  useEffect(() => {
-    if (initialScan) {
-      setScan(initialScan);
-    }
-  }, [initialScan]);
-
   // WebSocket connection for real-time updates
   useEffect(() => {
-    if (!id || scan?.status === 'completed') return;
+    if (!id || initialScan?.status === 'completed') return;
 
     // Get the backend URL from environment or default to localhost
     const backendUrl = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:5000' : window.location.origin);
@@ -213,7 +205,7 @@ export default function ScanResults() {
     );
   }
 
-  if (!scan) {
+  if (!initialScan) {
     return (
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <div className="text-center">
@@ -227,7 +219,7 @@ export default function ScanResults() {
   }
 
   // Use progress data if available, otherwise fall back to scan data
-  const currentStatus = progress?.status || scan?.status;
+  const currentStatus = progress?.status || initialScan?.status;
   const currentProgress = progress?.progress || 0;
   const currentStage = progress?.currentStage || '';
 
@@ -238,7 +230,7 @@ export default function ScanResults() {
       ? progress.vulnerabilities
       : (progress?.vulnerabilitiesFound > 0 && progress?.vulnerabilities)
         ? progress.vulnerabilities
-        : (scan?.vulnerabilities || [])
+        : (initialScan?.vulnerabilities || [])
   ) as Vulnerability[];
 
   // Update severity counts based on current vulnerabilities
@@ -374,7 +366,7 @@ export default function ScanResults() {
               <Card className="bg-gray-900 border-gray-700">
                 <CardHeader>
                   <CardTitle className="text-white text-xl">Scan Results</CardTitle>
-                  <p className="text-gray-400">{scan.url}</p>
+                  <p className="text-gray-400">{initialScan.url}</p>
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
