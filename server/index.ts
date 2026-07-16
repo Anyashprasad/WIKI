@@ -78,7 +78,7 @@ app.use(express.urlencoded({ extended: false }));
   // Serve static files in production
   if (process.env.NODE_ENV === "production") {
     const distPath = path.resolve(__dirname, "../../client/dist");
-    app.use(express.static(distPath, { maxAge: '1h' }));
+    app.use(express.static(distPath, { maxAge: '1h', index: false }));
 
     app.get("*", (_req, res) => {
       res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');

@@ -1474,7 +1474,7 @@ app.use(express.urlencoded({ extended: false }));
   });
   if (process.env.NODE_ENV === "production") {
     const distPath = path2.resolve(__dirname2, "../../client/dist");
-    app.use(express.static(distPath, { maxAge: "1h" }));
+    app.use(express.static(distPath, { maxAge: "1h", index: false }));
     app.get("*", (_req, res) => {
       res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
       res.setHeader("Pragma", "no-cache");

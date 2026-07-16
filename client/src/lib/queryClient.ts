@@ -13,7 +13,7 @@ export async function apiRequest(
   data?: unknown | undefined,
 ): Promise<Response> {
   // Ensure full URL by prepending server base URL if it's a relative path
-  const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  const baseUrl = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? "http://localhost:5000" : window.location.origin);
   const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
 
   const res = await fetch(fullUrl, {

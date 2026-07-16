@@ -92,7 +92,7 @@ export default function ScanResults() {
     if (!id || scan?.status === 'completed') return;
 
     // Get the backend URL from environment or default to localhost
-    const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+    const backendUrl = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:5000' : window.location.origin);
 
     const socket = io(backendUrl, {
       transports: ['websocket', 'polling'],
