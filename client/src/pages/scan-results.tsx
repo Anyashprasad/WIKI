@@ -69,6 +69,8 @@ export default function ScanResults() {
     queryKey: ['/api/scans', id],
   });
 
+  console.log("[DEBUG] ScanResults mount: id =", id, "initialScan =", initialScan, "isLoading =", isLoading);
+
   const [progress, setProgress] = useState<ScanProgress>({
     pagesScanned: 0,
     totalPages: 0,
@@ -106,7 +108,7 @@ export default function ScanResults() {
 
       // Invalidate query to fetch latest results when scan completes
       if (data.status === 'completed') {
-        queryClient.invalidateQueries({ queryKey: [`/api/scans/${id}`] });
+        queryClient.invalidateQueries({ queryKey: ["/api/scans", id] });
       }
     });
 
