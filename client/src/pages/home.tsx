@@ -120,7 +120,7 @@ export default function Home() {
             <span className="text-green-400">Applications</span>
           </motion.h2>
           <motion.p variants={itemVariants} className="text-xl text-gray-300 mb-12">
-            Your 10x Pentesting AI Assistant
+            Automated Web Application Security Monitor
           </motion.p>
 
           {/* URL Input */}
@@ -163,9 +163,9 @@ export default function Home() {
                 <div className="p-4 bg-green-400/20 rounded-full w-fit mx-auto mb-4">
                   <Bot className="h-8 w-8 text-green-400" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-white">AI-Powered Fixes</h3>
+                <h3 className="text-xl font-semibold mb-3 text-white">Remediation Guidance</h3>
                 <p className="text-white leading-relaxed">
-                  Intelligent remediation suggestions with code examples
+                  Structured remediation suggestions with code examples
                 </p>
               </CardContent>
             </Card>
